@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import ua.motionman.activitylecture.model.UserModalParcelable
 import ua.motionman.activitylecture.model.UserModel
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +44,16 @@ class MainActivity : AppCompatActivity() {
         Intent(this, SecondActivity::class.java).apply {
             putExtra("STRING_EXTRA", "Hello from MainActivity")
             putExtra("USER_EXTRA", user)
-//            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(this)
+        }
+    }
+
+    private fun navigateWithParcelable() {
+        val user = UserModalParcelable("1", "First", "Last")
+
+        Intent(this, SecondActivity::class.java).apply {
+            putExtra("PARCELABLE_EXTRA", user)
             startActivity(this)
         }
     }
